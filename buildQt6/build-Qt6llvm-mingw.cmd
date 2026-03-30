@@ -2,7 +2,7 @@
 @cd /d %~dp0
 
 :: 设置Qt版本
-SET QT_VERSION=6.10.2
+SET QT_VERSION=6.11.0
 
 :: 设置LLVM-MinGW版本代号
 SET LLVM_MinGW_VERSION=llvm-mingw21.1.8_64_UCRT
@@ -30,7 +30,7 @@ rmdir /s /q "%BUILD_DIR%"
 mkdir "%BUILD_DIR%" && cd /d "%BUILD_DIR%"
 
 :: configure
-call %SRC_QT%\configure.bat -static -static-runtime -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel
+call %SRC_QT%\configure.bat -static -static-runtime -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -no-sql-psql -no-sql-odbc -sql-sqlite -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel
 
 :: 编译(不要忘记点)
 cmake --build . --parallel
