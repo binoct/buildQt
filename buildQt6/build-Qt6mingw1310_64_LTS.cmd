@@ -2,13 +2,13 @@
 @cd /d %~dp0
 
 :: 设置Qt版本
-SET QT_VERSION=6.10.2
+SET QT_VERSION=6.8.3
 
 :: 设置MinGW版本代号
-SET MinGW_VERSION=mingw1520_64_UCRT
+SET MinGW_VERSION=mingw1310_64
 
 :: 设置编译器和Ninja
-SET PATH=D:\a\buildQt\mingw64\bin;D:\a\buildQt\ninja;%PATH%
+SET PATH=D:\a\buildQt\Tools\mingw1310_64\bin;D:\a\buildQt\ninja;%PATH%
 
 :: 设置Qt文件夹路径
 SET QT_PATH=D:\a\buildQt\Qt
@@ -30,7 +30,7 @@ rmdir /s /q "%BUILD_DIR%"
 mkdir "%BUILD_DIR%" && cd /d "%BUILD_DIR%"
 
 :: configure
-call %SRC_QT%\configure.bat -static -static-runtime -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel -platform win32-g++
+call %SRC_QT%\configure.bat -static -static-runtime -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -no-sql-psql -no-sql-odbc -sql-sqlite -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel -platform win32-g++
 
 :: 编译(不要忘记点)
 cmake --build . --parallel

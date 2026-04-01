@@ -2,7 +2,7 @@
 @cd /d %~dp0
 
 :: 设置Qt版本
-SET QT_VERSION=6.10.2
+SET QT_VERSION=6.11.0
 
 :: 设置MSVC版本代号
 SET MSVC_VERSION=msvc2022_64
@@ -30,7 +30,7 @@ rmdir /s /q "%BUILD_DIR%"
 mkdir "%BUILD_DIR%" && cd /d "%BUILD_DIR%"
 
 :: configure
-call %SRC_QT%\configure.bat -static -static-runtime -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -opensource -confirm-license -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel -platform win32-msvc
+call %SRC_QT%\configure.bat -static -static-runtime -release -prefix %INSTALL_DIR% -nomake examples -nomake tests -skip qtwebengine -no-build-qtwebengine-core -webengine-printing-and-pdf -opensource -confirm-license -no-sql-psql -no-sql-odbc -sql-sqlite -qt-libpng -qt-libjpeg -qt-zlib -qt-pcre -qt-freetype -schannel -platform win32-msvc
 
 :: 编译(不要忘记点)
 cmake --build . --parallel
